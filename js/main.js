@@ -2,249 +2,221 @@ var liftPosition = 1;
 var lift = document.querySelector('.lift');
 var liftButtonQueue = [];
 var liftMovingFunctions = [];
-var liftMoving = false;
+var isMoving = false;
 
 setLift = e => {
     let id = Number(e.id);
     liftButtonQueue.push(id);
-    // liftButtonQueue = liftButtonQueue.sort();
-    moveLift(e);
+    moveLift();
 }
 
-removeFromQueue = i => {
-    liftButtonQueue.splice(i - 1, 1);
-}
-
-moveLift = e => {
-    // console.log(liftButtonQueue);
+moveLift = _ => {
     if (liftButtonQueue[0] !== undefined) {
         switch (liftButtonQueue[0]) {
             case 1:
-                moveLiftToOne(e);
+                if (!isMoving) {
+                    moveLiftToOne();
+                } else {
+                    setTimeout(_ => {
+                        moveLiftToOne();
+                    }, 3000)
+                }
                 break;
             case 2:
-                moveLiftToSecond(e);
+                if (!isMoving) {
+                    moveLiftToSecond();
+                } else {
+                    setTimeout(_ => {
+                        moveLiftToSecond();
+                    }, 3000)
+                }
                 break;
             case 3:
-                moveLiftToThird(e);
+                if (!isMoving) {
+                    moveLiftToThird();
+                } else {
+                    setTimeout(_ => {
+                        moveLiftToThird();
+                    }, 3000);
+                }
                 break;
             case 4:
-                moveLiftToFourth(e);
+                if (!isMoving) {
+                    moveLiftToFourth();
+                } else {
+                    setTimeout(_ => {
+                        moveLiftToFourth();
+                    }, 3000);
+                }
                 break;
         }
-    } else {
-        return false
-    }
+    } else
+        isMoving = false;
 }
 
-moveLiftToOne = e => {
-    let id = Number(e.id);
+moveLiftToOne = _ => {
     switch (liftPosition) {
         case 1:
             lift.style.transform = 'translateY(0)';
             liftPosition = 1;
-            e.blur();
+            isMoving = true;
             setTimeout(_ => {
-                let index = liftButtonQueue.indexOf(id);
-                removeFromQueue(index);
-                moveLift(e);
+                liftButtonQueue.shift();
+                moveLift();
             }, 500);
             break;
         case 2:
             lift.style.transform = 'translateY(0)';
             liftPosition = 1;
+            isMoving = true;
             setTimeout(_ => {
-                e.blur();
-            }, 1000);
-            setTimeout(_ => {
-                let index = liftButtonQueue.indexOf(id);
-                removeFromQueue(index);
-                moveLift(e);
+                liftButtonQueue.shift();
+                moveLift();
             }, 1500);
             break;
         case 3:
             lift.style.transform = 'translateY(0)';
             liftPosition = 1;
+            isMoving = true;
             setTimeout(_ => {
-                e.blur();
-            }, 2000);
-            setTimeout(_ => {
-                let index = liftButtonQueue.indexOf(id);
-                removeFromQueue(index);
-                moveLift(e);
+                liftButtonQueue.shift();
+                moveLift();
             }, 2500);
             break;
         case 4:
             lift.style.transform = 'translateY(0)';
             liftPosition = 1;
+            isMoving = true;
             setTimeout(_ => {
-                e.blur();
-            }, 3000);
-            setTimeout(_ => {
-                let index = liftButtonQueue.indexOf(id);
-                removeFromQueue(index);
-                moveLift(e);
+                liftButtonQueue.shift();
+                moveLift();
             }, 3500);
             break;
     }
 }
 
 moveLiftToSecond = e => {
-    let id = Number(e.id);
     switch (liftPosition) {
         case 1:
             lift.style.transform = 'translateY(150%)';
             liftPosition = 2;
+            isMoving = true;
             setTimeout(_ => {
-                e.blur();
-            }, 1000);
-            setTimeout(_ => {
-                let index = liftButtonQueue.indexOf(id);
-                removeFromQueue(index);
-                moveLift(e);
+                liftButtonQueue.shift();
+                moveLift();
             }, 1500);
             break;
         case 2:
             lift.style.transform = 'translateY(150%)';
             liftPosition = 2;
-            e.blur();
+            isMoving = true;
             setTimeout(_ => {
-                let index = liftButtonQueue.indexOf(id);
-                removeFromQueue(index);
-                moveLift(e);
+                liftButtonQueue.shift();
+                moveLift();
             }, 500);
             break;
         case 3:
             lift.style.transform = 'translateY(150%)';
             liftPosition = 2;
+            isMoving = true;
             setTimeout(_ => {
-                e.blur();
-            }, 1000);
-            setTimeout(_ => {
-                let index = liftButtonQueue.indexOf(id);
-                removeFromQueue(index);
-                moveLift(e);
+                liftButtonQueue.shift();
+                moveLift();
             }, 1500);
             break;
         case 4:
             lift.style.transform = 'translateY(150%)';
             liftPosition = 2;
+            isMoving = true;
             setTimeout(_ => {
-                e.blur();
-            }, 2000);
-            setTimeout(_ => {
-                let index = liftButtonQueue.indexOf(id);
-                removeFromQueue(index);
-                moveLift(e);
+                liftButtonQueue.shift();
+                moveLift();
             }, 2500);
             break;
     }
 }
 
 moveLiftToThird = e => {
-    let id = Number(e.id);
     switch (liftPosition) {
         case 1:
             lift.style.transform = 'translateY(300%)';
             liftPosition = 3;
+            isMoving = true;
             setTimeout(_ => {
-                e.blur();
-            }, 2000);
-            setTimeout(_ => {
-                let index = liftButtonQueue.indexOf(id);
-                removeFromQueue(index);
+                liftButtonQueue.shift();
                 console.log(liftButtonQueue);
-                moveLift(e);
+                moveLift();
             }, 2500);
             break;
 
         case 2:
             lift.style.transform = 'translateY(300%)';
             liftPosition = 3;
+            isMoving = true;
             setTimeout(_ => {
-                e.blur();
-            }, 1000);
-            setTimeout(_ => {
-                let index = liftButtonQueue.indexOf(id);
-                removeFromQueue(index);
-                moveLift(e);
+                liftButtonQueue.shift();
+                moveLift();
             }, 1500);
             break;
 
         case 3:
             lift.style.transform = 'translateY(300%)';
             liftPosition = 3;
-            e.blur();
+            isMoving = true;
             setTimeout(_ => {
-                let index = liftButtonQueue.indexOf(id);
-                removeFromQueue(index);
-                moveLift(e);
+                liftButtonQueue.shift();
+                moveLift();
             }, 500);
             break;
 
         case 4:
             lift.style.transform = 'translateY(300%)';
             liftPosition = 3;
+            isMoving = true;
             setTimeout(_ => {
-                e.blur();
-            }, 1000);
-            setTimeout(_ => {
-                let index = liftButtonQueue.indexOf(id);
-                removeFromQueue(index);
-                moveLift(e);
+                liftButtonQueue.shift();
+                moveLift();
             }, 1500);
             break;
     }
 }
 
 moveLiftToFourth = e => {
-    let id = Number(e.id);
-
     switch (liftPosition) {
         case 1:
             lift.style.transform = 'translateY(400%)';
             liftPosition = 4;
+            isMoving = true;
             setTimeout(_ => {
-                e.blur();
-            }, 3000);
-            setTimeout(_ => {
-                let index = liftButtonQueue.indexOf(id);
-                removeFromQueue(index);
-                moveLift(e);
+                liftButtonQueue.shift();
+                moveLift();
             }, 3500);
             break;
         case 2:
             lift.style.transform = 'translateY(400%)';
             liftPosition = 4;
+            isMoving = true;
             setTimeout(_ => {
-                e.blur();
-            }, 2000)
-            setTimeout(_ => {
-                let index = liftButtonQueue.indexOf(id);
-                removeFromQueue(index);
-                moveLift(e);
+                liftButtonQueue.shift();
+                moveLift();
             }, 2500);
             break;
         case 3:
             lift.style.transform = 'translateY(400%)';
             liftPosition = 4;
+            isMoving = true;
             setTimeout(_ => {
-                e.blur();
-            }, 1000)
-            setTimeout(_ => {
-                let index = liftButtonQueue.indexOf(id);
-                removeFromQueue(index);
-                moveLift(e);
+                liftButtonQueue.shift();
+                moveLift();
             }, 1500);
             break;
         case 4:
             lift.style.transform = 'translateY(400%)';
             liftPosition = 4;
-            e.blur();
+            isMoving = true;
             setTimeout(_ => {
-                let index = liftButtonQueue.indexOf(id);
-                removeFromQueue(index);
-                moveLift(e);
+                liftButtonQueue.shift();
+                moveLift();
             }, 500);
             break;
     }
